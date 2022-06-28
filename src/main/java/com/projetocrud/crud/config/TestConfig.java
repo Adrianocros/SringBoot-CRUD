@@ -3,6 +3,7 @@ package com.projetocrud.crud.config;
 
 import com.projetocrud.crud.entities.Order;
 import com.projetocrud.crud.entities.User;
+import com.projetocrud.crud.entities.enuns.OrderStatus;
 import com.projetocrud.crud.repositories.OrderRepository;
 import com.projetocrud.crud.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,13 @@ public class TestConfig implements CommandLineRunner {
 
 
 
-        Order o1 = new Order(null,Instant.parse("2022-05-24T10:13:07Z"),u1);
-        Order o2 = new Order(null,Instant.parse("2021-02-12T11:23:07Z"),u2);
-        Order o3 = new Order(null,Instant.parse("2021-07-30T01:50:07Z"),u2);
+        Order o1 = new Order(null,Instant.parse("2022-05-24T10:13:07Z"), OrderStatus.AGUARDANDO_PAGAMENTO,u1);
+        Order o2 = new Order(null,Instant.parse("2021-02-12T11:23:22Z"),OrderStatus.PAGO,u2);
+        Order o3 = new Order(null,Instant.parse("2022-11-01T08:05:02Z"),OrderStatus.ENTREGUE,u3);
+        Order o4 = new Order(null,Instant.parse("2022-06-13T11:50:22Z"),OrderStatus.ENVIADO,u1);
+        Order o5 = new Order(null,Instant.parse("2022-03-23T10:25:33Z"),OrderStatus.CANCELADO,u2);
 
         userRepository.saveAll(Arrays.asList(u1,u2,u3));
-        orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+        orderRepository.saveAll(Arrays.asList(o1,o2,o3,o4,o5));
     }
 }
