@@ -1,7 +1,7 @@
 package com.projetocrud.crud.config;
 
 
-import com.projetocrud.crud.entities.Usuario;
+import com.projetocrud.crud.entities.User;
 import com.projetocrud.crud.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -20,9 +20,9 @@ public class TestConfig implements CommandLineRunner {
     @Override //Para ser executando quando a aplicação for iniciada
     public void run(String... args) throws Exception {
 
-        Usuario u1 = new Usuario(null,"Adriano Bianchi","adrianobiancih@outlook.com","99999999","1234");
-        Usuario u2 = new Usuario(null,"Tamara Correa Crosoletto","tamy.comercial@gmail.com","99999999","142321");
-        Usuario u3 = new Usuario(null,"Tamires Correa Crosoletto","tamirescorrea@gmail.com","9898989989","1212232");
+        User u1 = new User(null,"Adriano Bianchi","adrianobiancih@outlook.com","99999999","1234");
+        User u2 = new User(null,"Tamara Correa Crosoletto","tamy.comercial@gmail.com","99999999","142321");
+        User u3 = new User(null,"Tamires Correa Crosoletto","tamirescorrea@gmail.com","9898989989","1212232");
 
         userRepository.saveAll(Arrays.asList(u1,u2,u3));
     }
