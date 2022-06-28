@@ -1,7 +1,7 @@
 package com.projetocrud.crud.resources;
 
 
-import com.projetocrud.crud.entities.User;
+import com.projetocrud.crud.entities.Usuario;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,9 +14,8 @@ public class UserResource {
 
     //Metodo que acessa os usuarios
     @GetMapping
-    public ResponseEntity<User> findAll(){
-        User u = new User(1L,"Maria","maria@gmail.com","999999","1234");
+    public ResponseEntity<Usuario> findAll(){
+        Usuario u = new Usuario(1L,"Maria","maria@gmail.com","999999","1234");
         return  ResponseEntity.ok().body(u);
     }
-
 }

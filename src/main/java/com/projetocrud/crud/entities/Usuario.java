@@ -1,12 +1,19 @@
 package com.projetocrud.crud.entities;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class User implements Serializable {
 
-    private static final long serialVersionIID = 1L;
+@Entity
+public class Usuario implements Serializable {
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
@@ -14,9 +21,12 @@ public class User implements Serializable {
     private String password;
 
 
-    public User(){ }
+    public Usuario(){
 
-    public User(Long id, String name, String email, String phone, String password) {
+    }
+
+    public Usuario(Long id, String name, String email, String phone, String password) {
+        super();
         this.id = id;
         this.name = name;
         this.email = email;
@@ -67,8 +77,8 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
+        if (!(o instanceof Usuario)) return false;
+        Usuario user = (Usuario) o;
         return getId().equals(user.getId());
     }
 
