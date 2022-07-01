@@ -1,15 +1,9 @@
 package com.projetocrud.crud.config;
 
 
-import com.projetocrud.crud.entities.Category;
-import com.projetocrud.crud.entities.Order;
-import com.projetocrud.crud.entities.Product;
-import com.projetocrud.crud.entities.User;
+import com.projetocrud.crud.entities.*;
 import com.projetocrud.crud.entities.enuns.OrderStatus;
-import com.projetocrud.crud.repositories.CategoryRepository;
-import com.projetocrud.crud.repositories.OrderRepository;
-import com.projetocrud.crud.repositories.ProductRepository;
-import com.projetocrud.crud.repositories.UserRepository;
+import com.projetocrud.crud.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +28,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override //Para ser executando quando a aplicação for iniciada
     public void run(String... args) throws Exception {
@@ -79,7 +76,15 @@ public class TestConfig implements CommandLineRunner {
         productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));//Produtos X Categoria
 
 
+        //Itens do pedido
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
+        OrderItem oi5 = new OrderItem(o4, p4, 1, p4.getPrice());
+        OrderItem oi6 = new OrderItem(o5, p2, 2, p2.getPrice());
 
+        orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4,oi5,oi6));
 
     }
 }
