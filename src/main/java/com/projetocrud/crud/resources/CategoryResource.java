@@ -14,7 +14,7 @@ import java.util.List;
 
 //Camada de recursos
 @RestController
-@RequestMapping(value = "/Categories")
+@RequestMapping(value = "/categories")
 public class CategoryResource {
 
     @Autowired //dependencia

@@ -1,5 +1,7 @@
 package com.projetocrud.crud.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -16,7 +18,8 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @Transient //Impedir que o JPD interpret
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Category(){}

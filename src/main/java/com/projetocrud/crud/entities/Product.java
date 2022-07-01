@@ -19,7 +19,8 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @Transient //Impedir que o JPD interpret
+    @ManyToMany //Associação
+    @JoinTable(name = "tb_product_category",joinColumns = @JoinColumn(name = "product_id"),inverseJoinColumns = @JoinColumn (name = "category_id"))  //Definindo as chave estrangeiras
     private Set<Category> categories = new HashSet<>(); //SET garante que o produto nao tenha mais de uma categoria
 
     public  Product(){}
