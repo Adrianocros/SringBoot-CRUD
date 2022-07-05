@@ -57,6 +57,7 @@ public class TestConfig implements CommandLineRunner {
         Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, "");
         Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, "");
 
+
         productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));//Produtos
         //Categorias
         Category cat1 = new Category(null,"Eletronicos");
@@ -86,9 +87,12 @@ public class TestConfig implements CommandLineRunner {
 
         orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4,oi5,oi6));
 
-        Payment pay1 = new Payment(null,Instant.parse("2021-02-12T21:23:22Z"),o2);
-        o2.setPayment(pay1);
+        Payment pay1 = new Payment(null,Instant.parse("2021-02-12T21:23:22Z"),o1);
+        o1.setPayment(pay1);
 
-        orderRepository.save(o2);
+
+        orderRepository.save(o1);
+
+
     }
 }
