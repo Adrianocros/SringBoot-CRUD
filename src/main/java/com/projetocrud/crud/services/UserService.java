@@ -3,6 +3,7 @@ package com.projetocrud.crud.services;
 
 import com.projetocrud.crud.entities.User;
 import com.projetocrud.crud.repositories.UserRepository;
+import com.projetocrud.crud.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +24,7 @@ public class UserService {
 
     public User findById(Long id){
         Optional<User> obj = repository.findById(id);
-        return obj.get();
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
     //inserir no banco de dados o usuario
     public User insert(User obj){
