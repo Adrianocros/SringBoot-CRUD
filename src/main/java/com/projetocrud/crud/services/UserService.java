@@ -3,8 +3,11 @@ package com.projetocrud.crud.services;
 
 import com.projetocrud.crud.entities.User;
 import com.projetocrud.crud.repositories.UserRepository;
+import com.projetocrud.crud.services.exceptions.DataBaseException;
 import com.projetocrud.crud.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -33,7 +36,13 @@ public class UserService {
 
     //Deleção do usuario
     public void delete(Long id){
-        repository.deleteById(id);
+        try {
+            repository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            throw  new ResourceNotFoundException(id);
+        }catch (DataIntegrityViolationException e){
+           throw new DataBaseException(e.getMessage());
+            }
     }
 
     //Atualizar o usuario
